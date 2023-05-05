@@ -1,5 +1,9 @@
 import { ChevronDown, ChevronUp } from "../icons";
-import { removeItem, toggleAmount } from "../features/cart/cartSlice";
+import {
+  calculateTotals,
+  removeItem,
+  toggleAmount,
+} from "../features/cart/cartSlice";
 import { useDispatch } from "react-redux";
 
 const CartItem = ({ id, img, title, price, amount }) => {
@@ -37,8 +41,8 @@ const CartItem = ({ id, img, title, price, amount }) => {
           onClick={() => {
             if (amount === 1) {
               dispatch(removeItem(id));
+              return;
             }
-            return;
             dispatch(toggleAmount({ id, inc: false }));
           }}
         >
